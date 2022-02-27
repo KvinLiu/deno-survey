@@ -1,7 +1,25 @@
 import User from "../models/User.ts";
 import { compareSync, hashSync } from "../deps.ts";
 class AuthController {
-  login() {
+  async login(ctx: any) {
+    const body = await ctx.request.body();
+    const { email, password } = await body.value;
+    if (!email || !password) {
+      ctx.response.status = 422;
+      ctx.response.body = { message: "Please provide email and password" };
+      return;
+    }
+    let user = await User.findOne({ email });
+    if (!user) {
+      ctx.response.status = 422;
+      ctx.response.body = { message: "Incorrect Email!" };
+      return;
+    }
+    if (!compareSync(password, user.password)) {
+      ctx.response.status = 422;
+      ctx.response.body = { message: "Incorrect password" };
+      return;
+    }
   }
   async register(ctx: any) {
     const body = await ctx.request.body();
