@@ -11,8 +11,14 @@ export default class User {
     this.email = email;
     this.password = password;
   }
-  static findOne(params: object) {
-    return usersCollection.findOne(params);
+  static async findOne(params: object) {
+    let user = await usersCollection.findOne(params);
+    if (user) {
+      user.id = user["_id"].toString();
+      delete user["_id"];
+      return new User(user);
+    }
+    return user;
   }
   async save() {
     delete this.id;

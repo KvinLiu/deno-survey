@@ -1,5 +1,11 @@
 import User from "../models/User.ts";
-import { compareSync, hashSync } from "../deps.ts";
+import { compareSync, create, getNumericDate, hashSync } from "../deps.ts";
+
+const key = await crypto.subtle.generateKey(
+  { name: "HMAC", hash: "SHA-512" },
+  true,
+  ["sign", "verify"],
+);
 class AuthController {
   async login(ctx: any) {
     const body = await ctx.request.body();
@@ -20,6 +26,21 @@ class AuthController {
       ctx.response.body = { message: "Incorrect password" };
       return;
     }
+    const jwt = await create(
+      { alg: "HS512", typ: "JWT" },
+      {
+        iss: user.email,
+        exp: getNumericDate(60 * 60),
+      },
+      key,
+    );
+    ctx.response.status = 201;
+    ctx.response.body = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      jwt,
+    };
   }
   async register(ctx: any) {
     const body = await ctx.request.body();
