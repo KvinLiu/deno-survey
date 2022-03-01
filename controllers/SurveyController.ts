@@ -3,7 +3,9 @@ import Survey from "../models/Survey.ts";
 class SurveyController {
   async getAllForUser(ctx: any) {
     //@TODO
-    ctx.response.body = await Survey.findByUser("1");
+    const surveys = await Survey.findByUser("1");
+    console.log(surveys);
+    ctx.response.body = surveys;
   }
   async getSingle(ctx: any) {
   }

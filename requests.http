@@ -31,7 +31,7 @@ POST http://localhost:8000/api/survey
 Content-Type: application/json
 
 {
-  "name": "Survey 1",
+  "name": "Survey 8",
   "description": "This is a random survey"
 }
 
@@ -40,6 +40,6 @@ POST http://localhost:8000/api/survey/id
 Content-Type: application/json
 
 {
-  "name": "Survey 2",
+  "name": "Survey 7",
   "description": "This is an Update survey"
 }
