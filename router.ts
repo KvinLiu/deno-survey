@@ -1,5 +1,6 @@
 import { Router } from "./deps.ts";
 import authController from "./controllers/AuthController.ts";
+import surveyController from "./controllers/SurveyController.ts";
 
 const router = new Router();
 
@@ -8,6 +9,12 @@ router
     ctx.response.body = "hello world! again and again";
   })
   .post("/api/login", authController.login)
-  .post("/api/register", authController.register);
+  .post("/api/register", authController.register)
+  // Survey
+  .get("/api/survey", surveyController.getAllForUser)
+  .get("/api/survey/:id", surveyController.getSingle)
+  .post("/api/survey", surveyController.create)
+  .put("/api/survey/:id", surveyController.update)
+  .delete("/api/survey", surveyController.delete);
 
 export default router;
