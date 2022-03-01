@@ -1,11 +1,13 @@
 import { usersCollection } from "./../mongo.ts";
+import BaseModel from "./BaseModel.ts";
 
-export default class User {
+export default class User extends BaseModel {
   public id?: string;
   public name: string;
   public email: string;
   public password: string;
   constructor({ id = "", name = "", email = "", password = "" }) {
+    super();
     this.id = id;
     this.name = name;
     this.email = email;
@@ -13,18 +15,18 @@ export default class User {
   }
   static async findOne(params: object) {
     let user = await usersCollection.findOne(params);
-    if (user) {
-      user.id = user["_id"].toString();
-      delete user["_id"];
-      return new User(user);
-    }
-    return user;
+    if (!user) return;
+    return User.prepare(user);
   }
   async save() {
     delete this.id;
-    let id = await usersCollection.insertOne(this);
-    //console.log("what is ID", id.toString());
-    this.id = id.toString();
-    return this;
+    await usersCollection.insertOne(this);
+    return User.prepare(this);
+  }
+
+  protected static prepare(data: any): User {
+    data = BaseModel.prepare(data);
+    const user = new User(data);
+    return user;
   }
 }

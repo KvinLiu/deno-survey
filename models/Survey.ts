@@ -1,11 +1,14 @@
 import { surveyCollection } from "./../mongo.ts";
-export default class Survey {
+import BaseModel from "./BaseModel.ts";
+export default class Survey extends BaseModel {
   public id?: string = "";
   constructor(
     public userId: string,
     public name: string,
     public description: string,
-  ) {}
+  ) {
+    super();
+  }
   static async findByUser(userId: string): Promise<Survey[]> {
     const surveys = await surveyCollection.find({ userId });
     return surveys.map((data: any) => this.prepare(data));
@@ -18,9 +21,10 @@ export default class Survey {
     return this;
   }
 
-  private static prepare(data: any): Survey {
+  protected static prepare(data: any): Survey {
+    data = BaseModel.prepare(data);
     const survey = new Survey(data.userId, data.name, data.description);
-    survey.id = data["_id"];
+    survey.id = data.id;
     return survey;
   }
 }
