@@ -23,10 +23,4 @@ export default class User extends BaseModel {
     await usersCollection.insertOne(this);
     return User.prepare(this);
   }
-
-  protected static prepare(data: any): User {
-    data = BaseModel.prepare(data);
-    const user = new User(data);
-    return user;
-  }
 }

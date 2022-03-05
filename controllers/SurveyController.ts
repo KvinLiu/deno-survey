@@ -4,10 +4,19 @@ class SurveyController {
   async getAllForUser(ctx: any) {
     //@TODO
     const surveys = await Survey.findByUser("1");
-    console.log(surveys);
+
+    ctx.response.status = 200;
     ctx.response.body = surveys;
   }
   async getSingle(ctx: any) {
+    const id = ctx.params.id!;
+    const survey = await Survey.findById(id);
+    if (!survey) {
+      ctx.response.status = 404;
+      ctx.response.body = { message: "Incorrect ID" };
+      return;
+    }
+    ctx.response.body = survey;
   }
   async create(ctx: any) {
     const body = await ctx.request.body();

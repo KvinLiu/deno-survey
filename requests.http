@@ -3,9 +3,9 @@ POST http://localhost:8000/api/register
 Content-Type: application/json
 
 {
-  "name": "test20",
-  "email": "test1t@example.com",
-  "password": "test"
+  "name": "test22",
+  "email": "test22t@example.com",
+  "password": "test22"
 }
 
 
@@ -23,7 +23,7 @@ Content-Type: application/json
 ######################################
 
 ### Get all survey for user
-GET http://localhost:8000/api/survey
+GET http://localhost:8000/api/survey/
 Content-Type: application/json
 
 ### Create Survey
@@ -31,12 +31,16 @@ POST http://localhost:8000/api/survey
 Content-Type: application/json
 
 {
-  "name": "Survey 8",
-  "description": "This is a random survey"
+  "name": "Survey 12",
+  "description": "This is a 12th new survey"
 }
 
+### FindSingle Survey
+GET http://localhost:8000/api/survey/621e0eb0477ea9c2e5b32c
+Content-Type: application/json
+
 ### Update Survey
-POST http://localhost:8000/api/survey/id
+POST http://localhost:8000/api/survey/
 Content-Type: application/json
 
 {

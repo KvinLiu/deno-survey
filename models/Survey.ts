@@ -1,3 +1,4 @@
+import { Bson } from "../deps.ts";
 import { surveyCollection } from "./../mongo.ts";
 import BaseModel from "./BaseModel.ts";
 export default class Survey extends BaseModel {
@@ -14,17 +15,24 @@ export default class Survey extends BaseModel {
     return surveys.map((data: any) => this.prepare(data));
   }
 
-  async create() {
-    delete this.id;
-    let id = await surveyCollection.insertOne(this);
-    this.id = id.toString();
-    return this;
+  static async findById(id: string): Promise<Survey | null> {
+    let _id;
+    try {
+      _id = new Bson.ObjectId(id);
+    } catch (_) {
+      console.log("error SurveyController: ");
+      return null;
+    }
+    const survey = await surveyCollection.findOne({ _id });
+    if (!survey) {
+      return null;
+    }
+    return this.prepare(survey);
   }
 
-  protected static prepare(data: any): Survey {
-    data = BaseModel.prepare(data);
-    const survey = new Survey(data.userId, data.name, data.description);
-    survey.id = data.id;
-    return survey;
+  async create() {
+    delete this.id;
+    await surveyCollection.insertOne(this);
+    return Survey.prepare(this);
   }
 }
