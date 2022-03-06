@@ -20,7 +20,7 @@ export default class Survey extends BaseModel {
     try {
       _id = new Bson.ObjectId(id);
     } catch (_) {
-      console.log("error SurveyController: ");
+      console.log("error SurveyController: findById");
       return null;
     }
     const survey = await surveyCollection.findOne({ _id });
@@ -34,5 +34,27 @@ export default class Survey extends BaseModel {
     delete this.id;
     await surveyCollection.insertOne(this);
     return Survey.prepare(this);
+  }
+
+  static async update(
+    { id, name, description }: {
+      id: string;
+      name: string;
+      description: string;
+    },
+  ) {
+    let _id;
+    try {
+      _id = new Bson.ObjectId(id);
+    } catch (_) {
+      console.log("error SurveyController: update ");
+      return null;
+    }
+    await surveyCollection.updateOne(
+      { _id },
+      { $set: { name, description } },
+      { upsert: true },
+    );
+    return Survey.findById(id);
   }
 }

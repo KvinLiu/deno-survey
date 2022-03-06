@@ -31,19 +31,19 @@ POST http://localhost:8000/api/survey
 Content-Type: application/json
 
 {
-  "name": "Survey 12",
+  "name": "Survey New for update",
   "description": "This is a 12th new survey"
 }
 
 ### FindSingle Survey
-GET http://localhost:8000/api/survey/621e0eb0477ea9c2e5b32c
+GET http://localhost:8000/api/survey/622486a3722c49e3de9755b0
 Content-Type: application/json
 
 ### Update Survey
-POST http://localhost:8000/api/survey/
+PUT http://localhost:8000/api/survey/622486a3722c49e3de9755b0
 Content-Type: application/json
 
 {
-  "name": "Survey 7",
-  "description": "This is an Update survey"
+  "name": "Survey Update WTC, haha and haha",
+  "description": "This is an Update survey, It's not well done"
 }

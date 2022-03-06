@@ -12,9 +12,9 @@ router
   .post("/api/register", authController.register)
   // Survey
   .get("/api/survey", surveyController.getAllForUser)
-  .get("/api/survey/:id", surveyController.getSingle)
+  .get("/api/survey/:id", surveyController.getSingle.bind(surveyController))
   .post("/api/survey", surveyController.create)
-  .put("/api/survey/:id", surveyController.update)
+  .put("/api/survey/:id", surveyController.update.bind(surveyController))
   .delete("/api/survey", surveyController.delete);
 
 export default router;

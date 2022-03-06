@@ -1,6 +1,7 @@
 import Survey from "../models/Survey.ts";
+import BaseSurveyController from "./BaseSurveyController.ts";
 
-class SurveyController {
+class SurveyController extends BaseSurveyController {
   async getAllForUser(ctx: any) {
     //@TODO
     const surveys = await Survey.findByUser("1");
@@ -10,13 +11,11 @@ class SurveyController {
   }
   async getSingle(ctx: any) {
     const id = ctx.params.id!;
-    const survey = await Survey.findById(id);
-    if (!survey) {
-      ctx.response.status = 404;
-      ctx.response.body = { message: "Incorrect ID" };
-      return;
+    const survey = await this.findSurveyOrFail(id, ctx);
+    if (survey) {
+      ctx.response.status = 200;
+      ctx.response.body = survey;
     }
-    ctx.response.body = survey;
   }
   async create(ctx: any) {
     const body = await ctx.request.body();
@@ -31,6 +30,14 @@ class SurveyController {
   }
 
   async update(ctx: any) {
+    const id = ctx.params.id!;
+    const survey = await this.findSurveyOrFail(id, ctx);
+    if (survey) {
+      const body = await ctx.request.body();
+      const { name, description } = await body.value;
+      let survey = await Survey.update({ id, name, description });
+      ctx.response.body = survey;
+    }
   }
   async delete(ctx: any) {
   }
