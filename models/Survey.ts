@@ -57,4 +57,8 @@ export default class Survey extends BaseModel {
     );
     return Survey.findById(id);
   }
+
+  static delete(id: any) {
+    return surveyCollection.deleteOne({ _id: id });
+  }
 }

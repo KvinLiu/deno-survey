@@ -31,8 +31,8 @@ POST http://localhost:8000/api/survey
 Content-Type: application/json
 
 {
-  "name": "Survey New for update",
-  "description": "This is a 12th new survey"
+  "name": "Survey New for creation",
+  "description": "This is a May 9th new survey"
 }
 
 ### FindSingle Survey
@@ -47,3 +47,6 @@ Content-Type: application/json
   "name": "Survey Update WTC, haha and haha",
   "description": "This is an Update survey, It's not well done"
 }
+
+### Delete a Survey
+DELETE  http://localhost:8000/api/survey/6227ebeecb058a264da53f1a

@@ -15,6 +15,6 @@ router
   .get("/api/survey/:id", surveyController.getSingle.bind(surveyController))
   .post("/api/survey", surveyController.create)
   .put("/api/survey/:id", surveyController.update.bind(surveyController))
-  .delete("/api/survey", surveyController.delete);
+  .delete("/api/survey/:id", surveyController.delete.bind(surveyController));
 
 export default router;
