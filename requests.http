@@ -21,7 +21,7 @@ Content-Type: application/json
 ######################################
 ### Surveys
 ######################################
-@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0MjJ0dHRAZXhhbXBsZS5jb20iLCJleHAiOjE2NDY4NzY1NTV9.ox-jvJhzRyuWtEbBrCLl38FQ96L5eMiF0_gNx5mTYRxZilQ2_960F1WLjEVf3cAyTwgZijXeWfdrDztA-SKhtw 
+@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0MjJ0dHRAZXhhbXBsZS5jb20iLCJleHAiOjE2NDY4OTUzMTh9.NQDZPdWf9txIkOjuynLVQVq8YL0q47Yva8bJ-JtPYXnLAN3-rs_eW2qMpbXlJEDnyjItpiAkoir-3Cm27o2veQ 
 ### Get all survey for user
 GET http://localhost:8000/api/survey/
 Content-Type: application/json
@@ -30,6 +30,7 @@ Authorization: Bearer {{token}}
 ### Create Survey
 POST http://localhost:8000/api/survey
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "Survey New for creation",
@@ -37,8 +38,9 @@ Content-Type: application/json
 }
 
 ### FindSingle Survey
-GET http://localhost:8000/api/survey/622486a3722c49e3de9755b0
+GET http://localhost:8000/api/survey/622989f5cb8658738afa26fd
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 ### Update Survey
 PUT http://localhost:8000/api/survey/622486a3722c49e3de9755b0
