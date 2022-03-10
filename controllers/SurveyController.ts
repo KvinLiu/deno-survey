@@ -43,7 +43,7 @@ class SurveyController extends BaseSurveyController {
     const id = ctx.params.id!;
     const survey = await this.findSurveyOrFail(id, ctx);
     if (survey) {
-      Survey.delete(survey.id);
+      await Survey.delete(survey.id);
       ctx.response.status = 204;
     }
   }

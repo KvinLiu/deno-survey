@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "name": "test22",
-  "email": "test22t@example.com",
+  "email": "test22ttt@example.com",
   "password": "test22"
 }
 
@@ -14,17 +14,18 @@ POST http://localhost:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "test2@example.com",
-  "password": "test"
+  "email": "test22ttt@example.com",
+  "password": "test22"
 }
 
 ######################################
 ### Surveys
 ######################################
-
+@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0MjJ0dHRAZXhhbXBsZS5jb20iLCJleHAiOjE2NDY4NzY1NTV9.ox-jvJhzRyuWtEbBrCLl38FQ96L5eMiF0_gNx5mTYRxZilQ2_960F1WLjEVf3cAyTwgZijXeWfdrDztA-SKhtw 
 ### Get all survey for user
 GET http://localhost:8000/api/survey/
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 ### Create Survey
 POST http://localhost:8000/api/survey
@@ -49,4 +50,4 @@ Content-Type: application/json
 }
 
 ### Delete a Survey
-DELETE  http://localhost:8000/api/survey/6227ebeecb058a264da53f1a
+DELETE  http://localhost:8000/api/survey/621e0eb0466ea9c2e5b32c9f
