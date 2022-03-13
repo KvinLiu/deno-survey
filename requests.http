@@ -1,11 +1,11 @@
 ### Register
-POST http://localhost:8000/api/register
+  POST http://localhost:8000/api/register
 Content-Type: application/json
 
 {
-  "name": "test22",
-  "email": "test22ttt@example.com",
-  "password": "test22"
+  "name": "test33",
+  "email": "test33ttt@example.com",
+  "password": "test33"
 }
 
 
@@ -14,14 +14,14 @@ POST http://localhost:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "test22ttt@example.com",
-  "password": "test22"
+  "email": "test33ttt@example.com",
+  "password": "test33"
 }
 
 ######################################
 ### Surveys
 ######################################
-@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0MjJ0dHRAZXhhbXBsZS5jb20iLCJleHAiOjE2NDY4OTUzMTh9.NQDZPdWf9txIkOjuynLVQVq8YL0q47Yva8bJ-JtPYXnLAN3-rs_eW2qMpbXlJEDnyjItpiAkoir-3Cm27o2veQ 
+@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0MzN0dHRAZXhhbXBsZS5jb20iLCJleHAiOjE2NDcxNzczODB9.LYJDLGtaHj3hdCu1fh8PEc_Jqj2-tyWy3UDDbg7tD9cvlS3sYQ4qjdlOjzKaANKXH6d8zzjMHfo3_84Yoo3WTw 
 ### Get all survey for user
 GET http://localhost:8000/api/survey/
 Content-Type: application/json
@@ -38,7 +38,7 @@ Authorization: Bearer {{token}}
 }
 
 ### FindSingle Survey
-GET http://localhost:8000/api/survey/622989f5cb8658738afa26fd
+GET http://localhost:8000/api/survey/62299388f02169571ffb0953
 Content-Type: application/json
 Authorization: Bearer {{token}}
 

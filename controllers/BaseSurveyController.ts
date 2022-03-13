@@ -1,4 +1,5 @@
 import Survey from "../models/Survey.ts";
+import User from "../models/User.ts";
 
 export default class BaseSurveyController {
   async findSurveyOrFail(
@@ -11,6 +12,16 @@ export default class BaseSurveyController {
       ctx.response.body = { message: "Incorrect ID" };
       return null;
     }
+    const user = ctx.state.user as User;
+    if (survey.userId !== user.id) {
+      ctx.response.status = 403;
+      ctx.response.body = {
+        message: "You don't have permission on this survey",
+      };
+      return null;
+    }
+    console.log("user", user);
+    console.log("survey", survey);
     return survey;
   }
 }
