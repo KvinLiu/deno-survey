@@ -19,9 +19,12 @@ Content-Type: application/json
 }
 
 ######################################
+### token
+######################################
+@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0MzN0dHRAZXhhbXBsZS5jb20iLCJleHAiOjE2NDcxNzgyNDd9.0NfNXhmRb4iPJYnMW3yQt6zAESe6W8dF3kq3d5G2g5lXfMIwoefBgRWihvA6BOF3RRjTG1JRNQf2hSoaxa0sFg 
+######################################
 ### Surveys
 ######################################
-@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0MzN0dHRAZXhhbXBsZS5jb20iLCJleHAiOjE2NDcxNzczODB9.LYJDLGtaHj3hdCu1fh8PEc_Jqj2-tyWy3UDDbg7tD9cvlS3sYQ4qjdlOjzKaANKXH6d8zzjMHfo3_84Yoo3WTw 
 ### Get all survey for user
 GET http://localhost:8000/api/survey/
 Content-Type: application/json
@@ -35,6 +38,46 @@ Authorization: Bearer {{token}}
 {
   "name": "Survey New for creation",
   "description": "This is a May 9th new survey"
+}
+
+### FindSingle Survey
+GET http://localhost:8000/api/survey/62299388f02169571ffb0953
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Update Survey
+PUT http://localhost:8000/api/survey/622486a3722c49e3de9755b0
+Content-Type: application/json
+
+{
+  "name": "Survey Update WTC, haha and haha",
+  "description": "This is an Update survey, It's not well done"
+}
+
+### Delete a Survey
+DELETE  http://localhost:8000/api/survey/621e0eb0466ea9c2e5b32c9f
+
+######################################
+### Questions 
+######################################
+### Create Questions
+POST http://localhost:8000/api/question/622de40b67e2a83b7688d865 
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "text": "How much you like deno?",
+  "type":"choice",
+  "required": true,
+  "data" {
+     "multiple": false,
+     "anwsers": [
+       "I like it very much",
+       "I like it",
+       "I don't like it",
+       "I hate it"
+     ]
+  }
 }
 
 ### FindSingle Survey
